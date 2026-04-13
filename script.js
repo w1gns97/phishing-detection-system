@@ -8,7 +8,7 @@ async function checkPhishing() {
     }
 
     try {
-        const response = await fetch("https://your-api-url.onrender.com/predict", {
+        const response = await fetch("https://jungjung.com/predict", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
