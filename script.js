@@ -1,14 +1,20 @@
 async function checkPhishing() {
     const url = document.getElementById("urlInput").value;
-    const resultText = document.getElementById("result");
+    const resultBox = document.getElementById("result");
 
     if (!url) {
-        resultText.innerText = "URL을 입력하세요.";
+        resultBox.style.display = "block";
+        resultBox.className = "result-box phishing";
+        resultBox.innerText = "URL을 입력하세요.";
         return;
     }
 
+    resultBox.style.display = "block";
+    resultBox.className = "result-box";
+    resultBox.innerText = "분석 중입니다...";
+
     try {
-        const response = await fetch("https://jungjung.com/predict", {
+        const response = await fetch("https://your-api-url.onrender.com/predict", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -17,8 +23,16 @@ async function checkPhishing() {
         });
 
         const data = await response.json();
-        resultText.innerText = "분석 결과: " + data.result;
+
+        if (data.result.includes("정상")) {
+            resultBox.className = "result-box safe";
+            resultBox.innerText = "✅ 정상 사이트입니다.";
+        } else {
+            resultBox.className = "result-box phishing";
+            resultBox.innerText = "⚠️ 피싱 사이트로 의심됩니다.";
+        }
     } catch (error) {
-        resultText.innerText = "서버 연결 오류가 발생했습니다.";
+        resultBox.className = "result-box phishing";
+        resultBox.innerText = "서버 연결 오류가 발생했습니다.";
     }
 }
