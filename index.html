@@ -6,12 +6,26 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="background"></div>
+
     <div class="container">
-        <h2>AI 기반 피싱 사이트 탐지 시스템</h2>
-        <input type="text" id="urlInput" placeholder="URL을 입력하세요">
-        <button onclick="checkPhishing()">검사</button>
-        <p id="result"></p>
+        <div class="window-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+        </div>
+
+        <h1>AI 기반 피싱 사이트 탐지</h1>
+        <p class="subtitle">URL을 입력하여 안전성을 확인하세요</p>
+
+        <div class="input-group">
+            <input type="text" id="urlInput" placeholder="https://example.com">
+            <button onclick="checkPhishing()">검사하기</button>
+        </div>
+
+        <div id="result" class="result-box"></div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
