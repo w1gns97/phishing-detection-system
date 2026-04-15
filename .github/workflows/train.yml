@@ -1,0 +1,36 @@
+name: Train AI Model
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 저장소 가져오기
+        uses: actions/checkout@v4
+
+      - name: Python 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: 라이브러리 설치
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 모델 학습 실행
+        run: python train_model.py
+
+      - name: 학습된 모델 업로드
+        uses: actions/upload-artifact@v4
+        with:
+          name: trained-model
+          path: |
+            rf_model.pkl
+            feature_names.pkl
