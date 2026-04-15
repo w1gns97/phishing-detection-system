@@ -27,10 +27,10 @@ jobs:
       - name: 모델 학습 실행
         run: python train_model.py
 
-      - name: 학습된 모델 업로드
-        uses: actions/upload-artifact@v4
-        with:
-          name: trained-model
-          path: |
-            rf_model.pkl
-            feature_names.pkl
+      - name: 모델 커밋 및 푸시
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add rf_model.pkl feature_names.pkl
+          git commit -m "Auto-trained model"
+          git push
