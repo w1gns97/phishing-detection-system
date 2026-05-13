@@ -14,7 +14,7 @@ async function checkPhishing() {
     resultBox.innerText = "분석 중입니다...";
 
     try {
-        const response = await fetch("https://your-api-url.onrender.com/predict", {
+        const response = await fetch("https://phishing-detection-system-ds1q.onrender.com", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
